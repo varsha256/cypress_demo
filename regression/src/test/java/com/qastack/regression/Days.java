@@ -16,9 +16,9 @@ public class Days {
 
 	
 	@Test
-	public  void today(String v){
+	public  void today(){
 		
-		Assert.assertTrue(true);
+		Assert.assertTrue(4<3);
 		
 	}
 	
@@ -28,11 +28,14 @@ public class Days {
 		System.out.println("status of testcase execution is " +stat);
 		if(result.getStatus()==ITestResult.SUCCESS)
 		{
-			UpdateZephyrTests.updateZephyrStatus("QAS-3","1");
+			
+			//update zephyr test as pass
+			ResultStatusUpdate.updateZephyrResults("QAS-2","1","C://info.txt");
 		}
 		else if(result.getStatus()==ITestResult.FAILURE)
 		{
-			UpdateZephyrTests.zephyrUpdate("QAS-3","2");
+			//zephyr test as Fail
+			ResultStatusUpdate.updateZephyrResults("QAS-3","2","C://info.txt");
 		}
 	}
 	

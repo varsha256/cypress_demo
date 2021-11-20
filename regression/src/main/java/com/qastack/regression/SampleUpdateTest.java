@@ -34,7 +34,7 @@ public class SampleUpdateTest {
 		execIdRequest.header("Content-Type","application/json");
 		execIdRequest.header("Authorization","Basic dmFyc2hheWFkYXY6U0BAajI1NjkwMjM=");
 		String execIdEndpoint="rest/zapi/latest/execution";
-		HashMap<String , String > body=new <String , String>HashMap();
+		HashMap<String , String > body=new  HashMap<String , String>();
 		body.put("issueId", issueId);
 		
 		body.put("versionId", versionId);
@@ -52,8 +52,7 @@ public class SampleUpdateTest {
 		updateRequest.header("Content-Type","application/json");
 		updateRequest.header("Authorization","Basic dmFyc2hheWFkYXY6U0BAajI1NjkwMjM=");
 		String updateEndpoint="rest/zapi/latest/execution/"+execId+"/execute";
-		
-		HashMap<String , String > statusBody=new <String , String>HashMap();
+		HashMap<String , String > statusBody=new  HashMap<String , String>();
 		statusBody.put("status", "2");
 		
 		updateRequest.body(statusBody);

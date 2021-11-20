@@ -13,9 +13,9 @@ public class ResultStatusUpdate {
 	static String projectId="10002";
 	static String versionId="-1";
 	static String issueKey="QAS-1";
-	static String cycleId="5";
+	static String cycleId="6";
 	
-	public static void main(String[] args) {
+	public static void updateZephyrResults(String issueKey, String status, String filePath) {
 		// Fetch issue id from issue key
 		RequestSpecification issueIdrequest= RestAssured.given();
 		
@@ -51,15 +51,24 @@ public class ResultStatusUpdate {
 		updaterequest.header("Authorization","Basic dmFyc2hheWFkYXY6U0BAajI1NjkwMjM=");
 		String updateEndpoint="rest/zapi/latest/execution/"+executionId+"/execute";
 		HashMap<String ,String> updateReqBody= new HashMap<String ,String> ();
-		updateReqBody.put("status", "1");
+		updateReqBody.put("status", status);
 		updaterequest.body(updateReqBody);
-		int status =updaterequest.put(updateEndpoint).getStatusCode();
-		System.out.println(status);
+		int statusCode =updaterequest.put(updateEndpoint).getStatusCode();
+		System.out.println(statusCode);
 		
+		//UploadAttachment
 		
+		RequestSpecification uploadRequest= RestAssured.given();
+		uploadRequest.baseUri(url);
+		uploadRequest.header("Content-Type","multipart/form-data");
+		uploadRequest.header("Authorization","Basic dmFyc2hheWFkYXY6U0BAajI1NjkwMjM=");
+		String uploadEndpoint="rest/zapi/latest/attachment/";
+		uploadRequest.multiPart("file",new File(filePath),"text/plain");
+		uploadRequest.queryParam("entityId",executionId);
+		uploadRequest.queryParam("entityType","execution");
 		
-		
-		
+		int uploadStatus=uploadRequest.post(uploadEndpoint).getStatusCode();
+		System.out.println(uploadStatus);
 	}
 
 }
