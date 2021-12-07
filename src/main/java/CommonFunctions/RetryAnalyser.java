@@ -1,0 +1,17 @@
+package CommonFunctions;
+
+import org.testng.IRetryAnalyzer;
+import org.testng.ITestResult;
+
+public class RetryAnalyser implements IRetryAnalyzer {
+    public int count=0;
+    public int retryCount=1;
+    @Override
+    public boolean retry(ITestResult iTestResult) {
+        while(count<retryCount){
+           count++;
+            return true;
+        }
+        return false;
+    }
+}
