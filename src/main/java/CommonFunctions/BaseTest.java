@@ -65,12 +65,12 @@
                 logger.log(Status.SKIP,m);
             }
 
-        driver.quit();
+        driver.close();
 
         }
     @BeforeTest
     public void beforeTest(){
-        htmlReporter=new ExtentHtmlReporter(System.getProperty("usr.dir")+"Reports/AutomationExecutionReport.html");
+        htmlReporter=new ExtentHtmlReporter("D:/MyGitCodeBase/qastack/Reports/ExecutionReport.html");
         htmlReporter.config().setEncoding("utf-8");
         htmlReporter.config().setDocumentTitle("Automation Execution Report");
         htmlReporter.config().setReportName("Execution Results");
@@ -87,14 +87,16 @@
 
             switch(browserName.toUpperCase()) {
                 case "CHROME":
-                    System.setProperty("webdriver.chrome.driver","drivers/chromedriver.exe");
+                    System.setProperty("webdriver.chrome.driver","D:/MyGitCodeBase/qastack/drivers/chromedriver.exe");
                     driver=new ChromeDriver();
+                    break;
                 case "EDGE":
-                    System.setProperty("webdriver.edge.driver","drivers/msedgedriver.exe");
+                    System.setProperty("webdriver.edge.driver","D:/MyGitCodeBase/qastack/drivers/msedgedriver.exe");
                     driver=new ChromeDriver();
+                    break;
 
                 default:
-                    System.setProperty("webdriver.chrome.driver","drivers/chromedriver.exe");
+                    System.setProperty("webdriver.chrome.driver","D:/MyGitCodeBase/qastack/drivers/chromedriver.exe");
                     driver=new ChromeDriver();
             }
             return driver;

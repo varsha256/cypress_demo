@@ -1,4 +1,4 @@
-package src.test.java.TestCases;
+package test.java.TestCases;
 
 import PageWiseActions.HomePageActions;
 import org.testng.Assert;
